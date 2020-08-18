@@ -11,6 +11,5 @@ const vegSchema = mongoose.Schema({
     price:Number
 
 });
-
 module.exports = mongoose.model("Vegetable", vegSchema);
 
