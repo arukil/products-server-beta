@@ -8,9 +8,7 @@ const mongoose = require('mongoose');
 
 var cors = require('cors');
 
-
-const routes=require('./route')
-
+const routes = require('./route')
 
 const mongoDbConnectionString = require('./config/mongodb');
 
@@ -21,13 +19,9 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-
 app.use(cors());
 
-
-
 app.use('/api/products', routes);
-
 
 const server = http.createServer(app);
 
