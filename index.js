@@ -1,37 +1,33 @@
+require('dotenv').config();
+
 const http = require('http');
 
 const express = require('express');
-
-const bodyParser = require('body-parser');
 
 const mongoose = require('mongoose');
 
 var cors = require('cors');
 
-
-const routes=require('./route')
-
-
-const mongoDbConnectionString = require('./config/mongodb');
-
-const PORT = process.env.PORT || 4000;
-
 const app = express();
+
+app.use(cors());
+
+const bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+const routes=require('./route')
 
-app.use(cors());
-
-
+const PORT = process.env.PORT || 4000;
 
 app.use('/api/products', routes);
 
-
 const server = http.createServer(app);
 
-mongoose.connect(mongoDbConnectionString, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+mongoose.Promise=global.Promise;
+
+mongoose.connect(process.env.DB, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
   .then(result => {
     server.listen(PORT, () => {
       console.log("Server is listening on PORT: " + PORT);
