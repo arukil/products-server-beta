@@ -27,6 +27,13 @@ const server = http.createServer(app);
 
 mongoose.Promise=global.Promise;
 
+
+app.use('/',(req,res)=>{
+  
+    res.send(`Server running in ${PORT}`)
+
+})
+
 mongoose.connect(process.env.DB, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
   .then(result => {
     server.listen(PORT, () => {
