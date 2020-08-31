@@ -6,9 +6,14 @@ const vegSchema = mongoose.Schema({
 
     image: String, 
 
-    kg: Object,
+    available: Array,
+       
+    quantity: Number,
 
-    price:Number
+    stock: Boolean,
+
+    type: String
+
 
 });
 module.exports = mongoose.model("Vegetable", vegSchema);
