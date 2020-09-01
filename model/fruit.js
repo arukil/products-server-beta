@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const vegetableSchema = mongoose.Schema({
+const fruitSchema = mongoose.Schema({
 
     name: String,
 
@@ -14,5 +14,5 @@ const vegetableSchema = mongoose.Schema({
 
 
 });
-module.exports = mongoose.model("Vegetable", vegetableSchema);
+module.exports = mongoose.model("Fruit", fruitSchema);
 

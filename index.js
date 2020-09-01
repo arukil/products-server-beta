@@ -17,7 +17,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const routes=require('./route')
+const routes = require('./route')
 
 const PORT = process.env.PORT || 4000;
 
@@ -25,24 +25,34 @@ app.use('/api/products', routes);
 
 const server = http.createServer(app);
 
-mongoose.Promise=global.Promise;
+mongoose.Promise = global.Promise;
 
 
-app.use('/',(req,res)=>{
-  
-    res.send(`Server running in ${PORT}`)
+app.use('/', (req, res) => {
+
+  res.send(`Server running in ${PORT}`)
 
 })
 
-mongoose.connect(process.env.DB, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
-  .then(result => {
-    server.listen(PORT, () => {
-      console.log("Server is listening on PORT: " + PORT);
-    });
-  })
-  .catch(err => {
-    console.error(err);
+
+mongoose.connect(process.env.DB, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
+  .catch(function (error) {
+    console.log(`Unable to connect to the Mongo db  ${error} `);
   });
+
+
+const connection = mongoose.connection;
+
+connection.once('open', () => {
+  server.listen(PORT, () => {
+    console.log("Server is listening on PORT: " + PORT);
+  });
+})
+
+mongoose.connection.on('error', err => {
+  console.log(`failed to connect to MongoDB ${err}`)
+});
+
 
 
 
