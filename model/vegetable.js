@@ -12,7 +12,9 @@ const vegetableSchema = mongoose.Schema({
 
     type: String
 
-
 });
-module.exports = mongoose.model("Vegetable", vegetableSchema);
+
+const myDB = mongoose.connection.useDb('productList');
+
+module.exports = myDB.model("Vegetable", vegetableSchema);
 

@@ -14,5 +14,9 @@ const fruitSchema = mongoose.Schema({
 
 
 });
-module.exports = mongoose.model("Fruit", fruitSchema);
+
+
+const myDB = mongoose.connection.useDb('productList');
+
+module.exports = myDB.model("Fruit", fruitSchema);
 

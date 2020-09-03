@@ -9,7 +9,7 @@ const fruit = async (req, res) => {
        }
        res.json({data})
     });
-
+  
 }
 
 module.exports = fruit;

@@ -30,8 +30,21 @@ mongoose.Promise = global.Promise;
 
 app.use('/', (req, res) => {
 
-  res.send(`Server running in ${PORT}`)
+  
+const userInfoSchema =mongoose.Schema({
+       
+    name:String
+  // ...other fields
+});
 
+const myDB = mongoose.connection.useDb('user');
+
+const UserInfo = myDB.model('User', userInfoSchema);
+
+ UserInfo.find({},(err,data)=>{
+
+  res.send(`Server running in ${data}`)
+ })
 })
 
 
