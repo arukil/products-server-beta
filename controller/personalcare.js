@@ -2,11 +2,11 @@ const PersonalCare = require('../model/personalcare')
 
 const personalcare = async (req, res) => {
 
-    await PersonalCare.findOne({ name: 'soap' }, (err, data) => {
+    await PersonalCare.find({}, (err, data) => {
         if (err) {
             throw err
         }
-        res.json({ data:data.list })
+        res.json({ data })
     });
 }
 
