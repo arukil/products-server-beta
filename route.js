@@ -9,6 +9,7 @@ const personalcare =require('./controller/personalcare');
 
 const grocery =require('./controller/grocery');
 
+const housecare =require('./controller/housecare')
 
 const router = express.Router();
 
@@ -19,7 +20,9 @@ router.get("/fruit", fruit);
 
 router.get("/personalcare", personalcare);
 
-router.get("/grocery", grocery)
+router.get("/grocery", grocery )
+
+router.get("/housecare",housecare)
 
 
 
