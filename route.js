@@ -13,6 +13,10 @@ const housecare =require('./controller/housecare');
 
 const provision = require('./controller/provision');
 
+const packedfood =require('./controller/packedfood')
+
+const snack =require('./controller/snack')
+
 const router = express.Router();
 
 
@@ -28,8 +32,9 @@ router.get("/housecare",housecare)
 
 router.get("/provision", provision)
 
+router.get("/packedfood" , packedfood)
 
-
+router.get("/snack" ,snack)
 
 
 
