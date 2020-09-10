@@ -5,17 +5,21 @@ const vegetable = require("./controller/vegetable");
 
 const fruit = require("./controller/fruit");
 
-const personalcare =require('./controller/personalcare');
+const personalcare = require('./controller/personalcare');
 
-const grocery =require('./controller/grocery');
+const grocery = require('./controller/grocery');
 
-const housecare =require('./controller/housecare');
+const housecare = require('./controller/housecare');
 
 const provision = require('./controller/provision');
 
-const packedfood =require('./controller/packedfood')
+const packedfood = require('./controller/packedfood')
 
-const snack =require('./controller/snack')
+const snack = require('./controller/snack')
+
+const beverage = require('./controller/beverage')
+
+const babycare = require('./controller/babycare')
 
 const router = express.Router();
 
@@ -26,16 +30,19 @@ router.get("/fruit", fruit);
 
 router.get("/personalcare", personalcare);
 
-router.get("/grocery", grocery )
+router.get("/grocery", grocery)
 
-router.get("/housecare",housecare)
+router.get("/housecare", housecare)
 
 router.get("/provision", provision)
 
-router.get("/packedfood" , packedfood)
+router.get("/packedfood", packedfood)
 
-router.get("/snack" ,snack)
+router.get("/snack", snack)
 
+router.get("/beverage", beverage)
+
+router.get('/babycare',babycare)
 
 
 module.exports = router;
