@@ -4,10 +4,10 @@ const grocerySchema = mongoose.Schema({
 
     name: String,
 
-    image: String, 
+    image: String,
 
-    list: Array,
-       
+    route: String,
+
     type: String
 
 });
