@@ -1,5 +1,7 @@
 require('dotenv').config();
 
+require('events').EventEmitter.prototype._maxListeners = 100;
+
 const http = require('http');
 
 const express = require('express');
@@ -17,38 +19,34 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const routes = require('./route')
+const productRoutes = require('./routes/productRoute')
+
+const userRoutes = require('./routes/userRoute')
 
 const PORT = process.env.PORT || 4000;
 
-app.use('/api/products', routes);
+app.use('/api/products', productRoutes);
+
+app.use('/api/users', userRoutes);
 
 const server = http.createServer(app);
 
 mongoose.Promise = global.Promise;
 
-
 app.use('/', (req, res) => {
 
-  
-const userInfoSchema =mongoose.Schema({
-       
-    name:String
-  // ...other fields
-});
+  res.send(`arukil Server running `)
 
-const myDB = mongoose.connection.useDb('user');
-
-const UserInfo = myDB.model('User', userInfoSchema);
-
- UserInfo.find({},(err,data)=>{
-
-  res.send(`Server running in ${data}`)
- })
 })
 
 
-mongoose.connect(process.env.DB, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
+
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+mongoose.set('useUnifiedTopology', true);
+
+mongoose.connect(process.env.DB)
   .catch(function (error) {
     console.log(`Unable to connect to the Mongo db  ${error} `);
   });

@@ -1,4 +1,4 @@
-const Packedfood = require('../model/packedfood')
+const Packedfood = require('../../model/grocery/packedfood')
 
 const packedfood = async (req, res) => {
 

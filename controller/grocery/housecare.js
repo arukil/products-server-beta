@@ -1,4 +1,4 @@
-const Housecare = require('../model/housecare')
+const Housecare = require('../../model/grocery/housecare')
 
 const housecare = async (req, res) => {
 

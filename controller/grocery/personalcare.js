@@ -1,4 +1,4 @@
-const PersonalCare = require('../model/personalcare')
+const PersonalCare = require('../../model/grocery/personalcare')
 
 const personalcare = async (req, res) => {
 
