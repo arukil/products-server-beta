@@ -29,29 +29,34 @@ exports.phonenumberVerify = async (req, res) => {
         to: `+91${req.body.phonenumber}`,
         code: req.body.code
     })
-        .then(async () => {
-
-            const isUserExisting = await User.findOne({ phonenumber: req.body.phonenumber });
-            if (isUserExisting) {
-                const token = await jwt.sign({ userId: isUserExisting._id, }, process.env.JWTSECRET, { expiresIn: '180d' });
-                return res.json({ message: true, token: token, user: isUserExisting, expiresIn: 15552000 });
+        .then(async (data) => {
+            if (data.valid) {
+                const isUserExisting = await User.findOne({ phonenumber: req.body.phonenumber });
+                if (isUserExisting) {
+                    const token = await jwt.sign({ userId: isUserExisting }, process.env.JWTSECRET, { expiresIn: '180d' });
+                    return res.json({ status: true, token: token });
+                }
+                else {
+                    const user = await new User({
+                        username: 'Guest',
+                        phonenumber: req.body.phonenumber,
+                    });
+                    user.save()
+                        .then(async () => {
+                            const token = await jwt.sign({ userId: user }, process.env.JWTSECRET, { expiresIn: '180d' });
+                            return res.json({ status: true, token: token });
+                        })
+                        .catch(() => {
+                            return res.json({ status: false, message: 'something went wrong , try later.' });
+                        });
+                }
             }
             else {
-                const user = await new User({
-                    username: 'Guest',
-                    phonenumber: req.body.phonenumber,
-                });
-                user.save().then(async () => {
-                    const token = await jwt.sign({ userId: user._id, }, process.env.JWTSECRET, { expiresIn: '180d' });
-                    return res.json({ message: true, token: token, user: user, expiresIn: 15552000 });
-                })
-                    .catch(() => {
-                        return res.json({ message: false });
-                    });
+                res.json({ status: false, message: "The SMS passcode you've entered is incorrect." })
             }
         })
         .catch((err) => {
-            return res.json({ message: false });
+            return res.json({ status: false, message: 'something went wrong , try later' });
         });
 
 };

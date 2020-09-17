@@ -60,7 +60,7 @@ connection.once('open', () => {
   });
 })
 
-mongoose.connection.on('error', err => {
+connection.on('error', err => {
   console.log(`failed to connect to MongoDB ${err}`)
 });
 
