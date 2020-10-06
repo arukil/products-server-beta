@@ -10,6 +10,9 @@ const mongoose = require('mongoose');
 
 var cors = require('cors');
 
+const jwt = require('jsonwebtoken');
+
+
 const app = express();
 
 app.use(cors());
@@ -38,7 +41,6 @@ app.use('/', (req, res) => {
   res.send(`arukil Server running `)
 
 })
-
 
 
 mongoose.set('useNewUrlParser', true);

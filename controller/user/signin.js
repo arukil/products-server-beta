@@ -22,7 +22,6 @@ exports.phonenumberSignin = async (req, res) => {
 
 };
 
-
 exports.phonenumberVerify = async (req, res) => {
 
     await client.verify.services(process.env.SERVICEID).verificationChecks.create({
