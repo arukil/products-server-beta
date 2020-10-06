@@ -32,7 +32,7 @@ exports.phonenumberVerify = async (req, res) => {
             if (data.valid) {
                 const isUserExisting = await User.findOne({ phonenumber: req.body.phonenumber });
                 if (isUserExisting) {
-                    const token = await jwt.sign({ userId: isUserExisting }, process.env.JWTSECRET, { expiresIn: '180d' });
+                    const token = await jwt.sign({ user: isUserExisting }, process.env.JWTSECRET, { expiresIn: '180d' });
                     return res.json({ status: true, token: token });
                 }
                 else {
@@ -42,7 +42,7 @@ exports.phonenumberVerify = async (req, res) => {
                     });
                     user.save()
                         .then(async () => {
-                            const token = await jwt.sign({ userId: user }, process.env.JWTSECRET, { expiresIn: '180d' });
+                            const token = await jwt.sign({ user: user }, process.env.JWTSECRET, { expiresIn: '180d' });
                             return res.json({ status: true, token: token });
                         })
                         .catch(() => {
