@@ -15,9 +15,9 @@ router.post("/phonenumber/verify", user.phonenumberVerify);
 
 const auth = require('../middleware/tokenVerify');
 
-router.post("/saveAddress",auth, savedLocation.create);
-router.get("/saveAddress/read",auth, savedLocation.read);
-router.post("/saveAddress/delete",auth, savedLocation.delete);
+router.post("/saveAddress", auth, savedLocation.create);
+router.get("/saveAddress/read", auth, savedLocation.read);
+router.post("/saveAddress/delete", auth, savedLocation.delete);
 
 
 

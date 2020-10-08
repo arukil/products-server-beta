@@ -16,4 +16,4 @@ savedLoctionSchema.plugin(uniqueValidator);
 
 const myDB = mongoose.connection.useDb('user');
 
-module.exports = myDB.model("SavedLocation", savedLoctionSchema);
+module.exports = myDB.model("Savedlocation", savedLoctionSchema);

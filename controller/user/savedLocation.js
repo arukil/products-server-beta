@@ -1,3 +1,4 @@
+const { default: address } = require('../../../arukil-user-app/arukil/screen/home/region/component/address');
 const User = require('../../model/user/savedLocation');
 
 
@@ -7,7 +8,10 @@ exports.create = async (req, res) => {
     //update
     if (user) {
 
-        user.address.push(req.body.address)
+        const user = await new User({
+            userId: req.body.userId,
+            address: user.address.push(req.body.address),
+        });
         user.save()
             .then(async () => {
                 return res.json({ status: true });
@@ -37,14 +41,12 @@ exports.create = async (req, res) => {
 //read
 
 exports.read = async (req, res) => {
-
     await User.findOne({ userId: req.body.userId }, (err, data) => {
         if (err) {
             throw err
         }
         res.json({ data });
     });
-
 }
 
 
@@ -59,7 +61,7 @@ exports.delete = async (req, res) => {
             }
             else {
                 console.log(data)
-                res.json({status:true});
+                res.json({ status: true });
             }
         });
 
