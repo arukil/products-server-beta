@@ -1,4 +1,3 @@
-const { default: address } = require('../../../arukil-user-app/arukil/screen/home/region/component/address');
 const User = require('../../model/user/savedLocation');
 
 
