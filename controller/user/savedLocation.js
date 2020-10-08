@@ -14,7 +14,7 @@ exports.create = async (req, res) => {
         });
         user.save()
             .then(async () => {
-                return res.json({ status: true });
+                return res.json({ status: true, message: 'successfully saved' });
             })
             .catch(() => {
                 return res.json({ status: false, message: 'something went wrong , try later.' });
@@ -29,7 +29,7 @@ exports.create = async (req, res) => {
         });
         user.save()
             .then(async () => {
-                return res.json({ status: true });
+                return res.json({ status: true, message: 'successfully saved' });
             })
             .catch(() => {
                 return res.json({ status: false, message: 'something went wrong , try later.' });
