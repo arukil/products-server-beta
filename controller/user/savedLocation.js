@@ -7,7 +7,7 @@ exports.create = async (req, res) => {
         { $push: { address: req.body.address } },
         async function (error, success) {
             if (error) {
-                return res.json({ data: false, message: error });
+                return res.json({ data: false, message: '1' });
             }
             else if (success) {
                 return res.json({ data: true, message: 'successfully saved' });
