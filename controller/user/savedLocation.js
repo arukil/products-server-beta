@@ -7,7 +7,7 @@ exports.create = async (req, res) => {
         { $push: { address: req.body.address } },
         async function (error, success) {
             if (error) {
-                return res.json({ data: false, message: '1' });
+                return res.json({ data: false, message: 'something went wrong , try later.' });
             }
             else if (success) {
                 return res.json({ data: true, message: 'successfully saved' });
@@ -22,7 +22,7 @@ exports.create = async (req, res) => {
                         return res.json({ data: true, message: 'successfully saved' });
                     })
                     .catch(() => {
-                        return res.json({ data: false, message: error });
+                        return res.json({ data: false, message: 'something went wrong , try later.' });
                     });
             }
 
@@ -31,7 +31,7 @@ exports.create = async (req, res) => {
 }
 //read
 exports.read = async (req, res) => {
-    await User.findOne({ userId: req.body.userId }, (err, data) => {
+    await User.findOne({ userId: req.data.userId }, (err, data) => {
         if (err) {
             res.json({ data:err })
         }
