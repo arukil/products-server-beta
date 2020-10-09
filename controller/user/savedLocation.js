@@ -33,9 +33,9 @@ exports.create = async (req, res) => {
 exports.read = async (req, res) => {
     await User.findOne({ userId: req.body.userId }, (err, data) => {
         if (err) {
-            throw err
+            res.json({ data:err })
         }
-        res.json({ data });
+        res.json({ data , message:'successfully read'  });
     });
 }
 
