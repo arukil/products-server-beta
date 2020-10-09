@@ -22,7 +22,7 @@ exports.create = async (req, res) => {
                         return res.json({ data: true, message: 'successfully saved' });
                     })
                     .catch(() => {
-                        return res.json({ data: false, message: 'something went wrong , try later.' });
+                        return res.json({ data: false, message: error });
                     });
             }
 
