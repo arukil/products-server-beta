@@ -31,7 +31,7 @@ exports.create = async (req, res) => {
 }
 //read
 exports.read = async (req, res) => {
-    await User.findOne({ userId: req.data.userId }, (err, data) => {
+    await User.findOne({ userId: req.params.userId }, (err, data) => {
         if (err) {
             res.json({ data:err })
         }
