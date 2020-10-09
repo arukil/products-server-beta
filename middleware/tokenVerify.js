@@ -6,7 +6,7 @@ module.exports = (req, res, next) => {
         const decodedToken = jwt.verify(token, process.env.JWTSECRET);
         const userId = decodedToken.userId;
         if (req.body.userId && req.body.userId !== userId) {
-            res.json({ status: false })
+            res.json({ status: false });
         } else {
             next();
         }
